@@ -10,6 +10,6 @@ function [chdir] = addFields(chdir,proto)
     chdir.pert_time_unit = proto.SM_Time_Unit;
     chdir.pert_dose_unit = proto.SM_Dose_Unit;
     chdir.cell_id = proto.CL_Name;
-    chdir.geo_id = proto.cid;
+
    
 end

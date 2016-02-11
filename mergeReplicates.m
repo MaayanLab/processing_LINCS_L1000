@@ -42,10 +42,12 @@ for i = 1:numel(sigIdStructs)
         chdirReplicate = dict(chdirStructsAllPlates,@(x)strcmp(x.SM_Center_Compound_ID,sigIdStruct.x0x5F_id.pert_id)&&(x.SM_Dose==sigIdStruct.x0x5F_id.pert_dose));
         chdir.chdirLm = chdirReplicate.chdirLm';
         chdir.chdirFull = chdirReplicate.chdir';
+        chdir.geo_id = {chdirReplicate.cid};
         chdirs{i} = addFields(chdir,chdirReplicate);
     else
         chdirReplicates = dict(chdirStructsAllPlates,@(x)strcmp(x.SM_Center_Compound_ID,sigIdStruct.x0x5F_id.pert_id)&&(x.SM_Dose==sigIdStruct.x0x5F_id.pert_dose));
         assert(numel(chdirReplicates)==sigIdStruct.replicateCount);
+        chdir.geo_id = cellfun(@(x)x.cid,chdirReplicates,'UniformOutput',false);
         chdirVectorsLm = cellfun(@(x)x.chdirLm,chdirReplicates,'UniformOutput',false);
         chdirVectorsLm = [chdirVectorsLm{:}];
         meanChdirVectorLm = mean(chdirVectorsLm,2);
